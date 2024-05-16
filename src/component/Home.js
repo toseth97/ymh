@@ -11,10 +11,7 @@ export const Home = ({ count, setCount, prevImg, nextImg, data }) => {
     return (
         <div className="home">
             <FrontDisplay />
-            <h2 className="motto">
-                Raising an Ardent and Addicted worshippers of{" "}
-                <span className="word">Christ</span>
-            </h2>
+
             <div className="join_us">Feel free to join us</div>
             <main className="program_main">
                 <section className="program_section">

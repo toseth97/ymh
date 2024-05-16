@@ -1,5 +1,7 @@
 import React from "react";
 import Logo from "../images/logo.png";
+import { FaInstagramSquare } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa6";
 
 const Footer = () => {
     let myDate = new Date();
@@ -12,17 +14,16 @@ const Footer = () => {
                     <p>Salvation</p>
                     <p>Deliverance</p>
                     <p>Undiluted word of God</p>
-                    <p>Councel and Advice</p>
+                    <p>Counsel and Advice</p>
                 </div>
                 <div className="social">
-                    <a href="" target="_blank">
-                        <i className="bx bxl-facebook-square"></i>
+                    <a href="https://www.instagram.com/youngministershub?igsh=MTlyZXMybWNuZ3JuOA==">
+                        <FaInstagramSquare
+                            style={{ fontSize: "50px", color: "crimson" }}
+                        />
                     </a>
-                    <a href="" target="_blank">
-                        <i className="bx bxl-instagram-alt"></i>
-                    </a>
-                    <a href="https://wa.me/+2348085075678" target="_blank">
-                        <i className="bx bxl-whatsapp-square"></i>
+                    <a href="https://youtube.com/@youngministershub?si=vYsaoacsqZm59tNu">
+                        <FaYoutube style={{ fontSize: "50px", color: "red" }} />
                     </a>
                 </div>
             </main>
