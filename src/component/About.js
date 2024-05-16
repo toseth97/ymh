@@ -13,7 +13,7 @@ const About = () => {
                     of Christ{" "}
                 </h2>
 
-                <img src={Image6} />
+                <img src={Image6} alt="" />
             </div>
             <div data-aos="fade-in" className="intro2_bible_ref">
                 <p>

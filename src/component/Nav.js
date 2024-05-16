@@ -17,15 +17,6 @@ const Nav = ({ mobile, active, setMobile, isAuth, setIsAuth }) => {
         setMobile((current) => (current ? !current : null));
     };
 
-    const signUserout = () => {
-        signOut(auth).then(() => {
-            localStorage.clear();
-            setIsAuth(false);
-            setMobile((current) => (current ? !current : null));
-            navigate("/login");
-        });
-    };
-
     return (
         <nav
             className={
