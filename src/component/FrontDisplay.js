@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DisplayImg from "./DisplayImg";
+
 import FrontPage from "../images/image1.jpg";
 import Logo from "../images/logo.png";
 

@@ -1,17 +1,12 @@
 import Nav from "./component/Nav";
 import { Home } from "./component/Home";
-import { ImgData } from "./imgdata";
 import { useEffect, useState } from "react";
-import Login from "./component/Login";
 import About from "./component/About";
 import Footer from "./component/Footer";
-import Library from "./component/Library";
-import { spiritDiet } from "./spiritDiet";
+
 import { Routes, Route, useNavigate } from "react-router-dom";
-import PostDiet from "./component/PostDiet";
-import NewPost from "./component/NewPost";
+
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import { auth, database } from "./firebase_Config";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./global.css";
@@ -27,14 +22,6 @@ function App() {
     let navigate = useNavigate();
 
     const [mobile, setMobile] = useState(false);
-    const [diet, setDiet] = useState(spiritDiet);
-    const [newpost, setNewPost] = useState({
-        title: "",
-        text: "",
-        introduction: "",
-        points: "",
-        conclusion: "",
-    });
 
     const [isAuth, setIsAuth] = useState(false);
     const [count, setCount] = useState(0);
@@ -53,42 +40,42 @@ function App() {
     };
 
     // saving data to firebase/firestore
-    const postRef = collection(database, "diet");
-    const createPost = async (e) => {
-        e.preventDefault();
-        await addDoc(postRef, {
-            title: newpost.title,
-            text: newpost.text,
-            introduction: newpost.introduction,
-            points: newpost.points,
-            conclusion: newpost.conclusion,
-            author: {
-                name: auth.currentUser.displayName,
-                id: auth.currentUser.uid,
-            },
-        });
-        setNewPost({
-            title: "",
-            text: "",
-            introduction: "",
-            points: "",
-            conclusion: "",
-        });
-        navigate("/library");
-        alert("Diet created successfully");
-    };
-    const [dietPost, setDietPost] = useState([]);
-    const getRef = collection(database, "diet");
-    useEffect(() => {
-        const getPost = async () => {
-            const data = await getDocs(getRef);
-            setDietPost(
-                data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-            );
-        };
+    // const postRef = collection(database, "diet");
+    // const createPost = async (e) => {
+    //     e.preventDefault();
+    //     await addDoc(postRef, {
+    //         title: newpost.title,
+    //         text: newpost.text,
+    //         introduction: newpost.introduction,
+    //         points: newpost.points,
+    //         conclusion: newpost.conclusion,
+    //         author: {
+    //             name: auth.currentUser.displayName,
+    //             id: auth.currentUser.uid,
+    //         },
+    //     });
+    //     setNewPost({
+    //         title: "",
+    //         text: "",
+    //         introduction: "",
+    //         points: "",
+    //         conclusion: "",
+    //     });
+    //     navigate("/library");
+    //     alert("Diet created successfully");
+    // };
+    // const [dietPost, setDietPost] = useState([]);
+    // const getRef = collection(database, "diet");
+    // useEffect(() => {
+    //     const getPost = async () => {
+    //         const data = await getDocs(getRef);
+    //         setDietPost(
+    //             data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    //         );
+    //     };
 
-        getPost();
-    }, []);
+    //     getPost();
+    // }, []);
 
     /**
     const handleDietSubmit = (e) => {
@@ -118,7 +105,6 @@ function App() {
         return () => clearInterval(interval);
     }, []);
 
-    const data = ImgData;
     return (
         <div className={mobile ? "App active" : "App"}>
             <Nav
@@ -130,42 +116,8 @@ function App() {
             />
 
             <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <Home
-                            count={count}
-                            setCount={setCount}
-                            nextImg={nextImg}
-                            prevImg={prevImg}
-                            data={data}
-                        />
-                    }
-                />
+                <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
-                <Route
-                    exact
-                    path="/library"
-                    element={<Library dietPost={dietPost} isAuth={isAuth} />}
-                />
-                <Route
-                    path="/library/:id"
-                    element={<PostDiet dietPost={dietPost} />}
-                />
-                <Route
-                    path="/newPost"
-                    element={
-                        <NewPost
-                            createPost={createPost}
-                            newpost={newpost}
-                            setNewPost={setNewPost}
-                        />
-                    }
-                />
-                <Route
-                    path="/login"
-                    element={<Login setIsAuth={setIsAuth} />}
-                />
             </Routes>
 
             <Footer />
